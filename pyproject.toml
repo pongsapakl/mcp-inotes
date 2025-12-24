@@ -1,0 +1,19 @@
+[project]
+name = "mcp-inotes"
+version = "0.1.0"
+description = "A lightweight MCP server for Apple Notes integration"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp>=2.0.0"
+]
+
+[project.scripts]
+mcp-inotes = "main:main"
+
+[tool.uv]
+package = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
