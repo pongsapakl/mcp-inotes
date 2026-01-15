@@ -26,9 +26,9 @@ class NotesService:
         Raises:
             Exception: If AppleScript execution fails
         """
-        # Escape quotes and backslashes
+        # Escape quotes, backslashes, and convert newlines to HTML breaks
         title = title.replace("\\", "\\\\").replace('"', '\\"')
-        body = body.replace("\\", "\\\\").replace('"', '\\"')
+        body = body.replace("\\", "\\\\").replace('"', '\\"').replace('\n', '<br>')
 
         script = f'''
         tell application "Notes"
@@ -103,12 +103,12 @@ class NotesService:
             Exception: If note not found or append fails
         """
         note_id = note_id.replace("\\", "\\\\").replace('"', '\\"')
-        content = content.replace("\\", "\\\\").replace('"', '\\"')
+        content = content.replace("\\", "\\\\").replace('"', '\\"').replace('\n', '<br>')
 
         script = f'''
         tell application "Notes"
             set theNote to note id "{note_id}"
-            set body of theNote to (body of theNote) & "\\n\\n{content}"
+            set body of theNote to (body of theNote) & "<br><br>{content}"
         end tell
         '''
 
